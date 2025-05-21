@@ -1,9 +1,20 @@
 package com.wif3011.framework;
 
-public abstract class MatrixCalculator {
+public abstract class MatrixMultiplier {
+    protected int leftMatrixRows;
+    protected int sharedDimension;
+    protected int rightMatrixCols;
+
     public final int[][] multiply(int[][] matrixA, int[][] matrixB) {
         checkMetrics(matrixA, matrixB);
+        setup(matrixA, matrixB);
         return safeMultiply(matrixA, matrixB);
+    }
+
+    protected void setup(int[][] leftMatrix, int[][] rightMatrix) {
+        leftMatrixRows = leftMatrix.length;
+        rightMatrixCols = rightMatrix[0].length;
+        sharedDimension = leftMatrix[0].length;
     }
 
     protected abstract int[][] safeMultiply(int[][] matrixA, int[][] matrixB);
