@@ -5,6 +5,7 @@ import com.wif3011.framework.SequentialMatrixMultiplier;
 import com.wif3011.framework.TiledExecServiceMatrixMultiplier;
 import com.wif3011.framework.TiledForkJoinMatrixMultiplier;
 import com.wif3011.framework.TiledParallelMatrixMultiplier;
+import com.wif3011.framework.TiledThreadMatrixMultiplier;
 import com.wif3011.util.MatrixUtil;
 
 import java.util.Arrays;
@@ -31,10 +32,11 @@ public class Main {
         System.out.println("Multiplication C completed in " + (System.currentTimeMillis() - start) + "ms");
 
         MatrixMultiplier[] calculators = {
-            new SequentialMatrixMultiplier(),
-            new TiledParallelMatrixMultiplier(),
-            new TiledForkJoinMatrixMultiplier(),
-            new TiledExecServiceMatrixMultiplier(),
+                new SequentialMatrixMultiplier(),
+                new TiledParallelMatrixMultiplier(),
+                new TiledForkJoinMatrixMultiplier(),
+                new TiledExecServiceMatrixMultiplier(),
+                new TiledThreadMatrixMultiplier()
         };
 
         for (MatrixMultiplier calculator : calculators) {
@@ -44,7 +46,8 @@ public class Main {
             }
             start = System.currentTimeMillis();
             int[][] matrix = calculator.multiply(matrixA, matrixB);
-            System.out.println("Multiplication " + calculator.getClass().getSimpleName() + " completed in " + (System.currentTimeMillis() - start) + "ms");
+            System.out.println("Multiplication " + calculator.getClass().getSimpleName() + " completed in "
+                    + (System.currentTimeMillis() - start) + "ms");
             // Verify the result using Arrays.deepEquals
             System.out.println("Result verification: " + (Arrays.deepEquals(matrixC, matrix) ? "Passed" : "Failed"));
         }
