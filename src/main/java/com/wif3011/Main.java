@@ -1,6 +1,7 @@
 package com.wif3011;
 
 import com.wif3011.framework.MatrixMultiplier;
+import com.wif3011.framework.SequentialMatrixMultiplier;
 import com.wif3011.framework.TiledExecServiceMatrixMultiplier;
 import com.wif3011.framework.TiledForkJoinMatrixMultiplier;
 import com.wif3011.framework.TiledParallelMatrixMultiplier;
@@ -30,6 +31,7 @@ public class Main {
         System.out.println("Multiplication C completed in " + (System.currentTimeMillis() - start) + "ms");
 
         MatrixMultiplier[] calculators = {
+            new SequentialMatrixMultiplier(),
             new TiledParallelMatrixMultiplier(),
             new TiledForkJoinMatrixMultiplier(),
             new TiledExecServiceMatrixMultiplier(),
