@@ -45,11 +45,6 @@ public class MatrixBenchmark {
 
         System.out.println("Running " + calculator.getClass().getSimpleName() + " on size " + size + "x" + size);
         Runtime runtime = Runtime.getRuntime();
-        System.out.println("====================================================================================");
-        System.out.printf("| %-35s | %-10s | %-10s | %-15s | %-8s |\n",
-                "Implementation", "MatrixSize", "Time(ms)", "MemoryUsed(KB)", "Correct");
-        System.out.println("------------------------------------------------------------------------------------");
-
         long start = System.currentTimeMillis();
         final int[][] matrixA = MatrixUtil.generate(size, size, 0, 10);
         final int[][] matrixB = MatrixUtil.generate(size, size, 0, 10);
@@ -84,7 +79,10 @@ public class MatrixBenchmark {
 
         long memoryUsedKb = (memoryAfter - memoryBefore) / 1024;
         boolean correct = Arrays.deepEquals(matrixC, result);
-
+        System.out.println("====================================================================================");
+        System.out.printf("| %-35s | %-10s | %-10s | %-15s | %-8s |\n",
+                "Implementation", "MatrixSize", "Time(ms)", "MemoryUsed(KB)", "Correct");
+        System.out.println("------------------------------------------------------------------------------------");
         System.out.printf("| %-35s | %-10d | %-10d | %-15d | %-8s |\n",
                 calculator.getClass().getSimpleName(),
                 size,
