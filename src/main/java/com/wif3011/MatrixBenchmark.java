@@ -8,6 +8,7 @@ import com.wif3011.framework.TiledParallelMatrixMultiplier;
 import com.wif3011.framework.TiledThreadMatrixMultiplier;
 import com.wif3011.util.MatrixUtil;
 
+import java.io.IOException;
 import java.util.Arrays;
 
 public class MatrixBenchmark {
@@ -41,6 +42,12 @@ public class MatrixBenchmark {
             default:
                 System.out.println("Unknown implementation.");
                 return;
+        }
+        System.out.println("Attach VisualVM now, then press Enter to start matrix multiplication...");
+        try {
+            System.in.read(); // Waits for Enter key
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
         System.out.println("Running " + calculator.getClass().getSimpleName() + " on size " + size + "x" + size);
